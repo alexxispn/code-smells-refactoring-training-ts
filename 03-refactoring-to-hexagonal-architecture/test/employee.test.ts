@@ -1,13 +1,14 @@
 import {Employee} from "../src/Employee";
 import {OurDate} from "../src/OurDate";
+import {date} from "./dateHelper";
 
 describe('Employee', () => {
 
   it('birthday', () => {
-    const employee = new Employee("foo", "bar", "1990/01/31", "a@b.c");
+    const employee = new Employee("foo", "a@b.c", date("1990/01/31"));
 
-    expect(employee.isBirthday(new OurDate("2008/01/30"))).toBeFalsy();
-    expect(employee.isBirthday(new OurDate("2008/01/31"))).toBeTruthy();
+    expect(employee.isBirthday(date("2008/01/30"))).toBeFalsy();
+    expect(employee.isBirthday(date("2008/01/31"))).toBeTruthy();
   });
 
 });

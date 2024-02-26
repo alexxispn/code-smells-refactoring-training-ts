@@ -1,6 +1,7 @@
 import {Employee} from "./Employee";
 import * as fs from "fs";
 import {EmployeesRepository} from "./EmployeesRepository";
+import {OurDate} from "./OurDate";
 
 export class FileEmployeesRepository implements EmployeesRepository {
     private readonly path: string;
@@ -14,8 +15,8 @@ export class FileEmployeesRepository implements EmployeesRepository {
         const employees: Employee[] = []
         data.split(/\r?\n/).forEach((str: string) => {
             let employeeData = str.split(", ");
-            const employee = new Employee(employeeData[1], employeeData[0],
-                employeeData[2], employeeData[3]);
+            const employee = new Employee(employeeData[1], employeeData[3],
+                new OurDate(new Date(employeeData[2])));
             employees.push(employee);
         });
         return employees;

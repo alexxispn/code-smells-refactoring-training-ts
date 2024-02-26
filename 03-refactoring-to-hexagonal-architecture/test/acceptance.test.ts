@@ -3,6 +3,7 @@ import {OurDate} from "../src/OurDate";
 import {Transporter} from "nodemailer";
 import {MailOptions} from "nodemailer/lib/smtp-transport";
 import {FileEmployeesRepository} from "../src/FileEmployeesRepository";
+import {date} from "./dateHelper";
 
 describe('Acceptance', () => {
 
@@ -22,7 +23,7 @@ describe('Acceptance', () => {
     })
 
     it('base scenario', () => {
-        service.sendGreetings(new OurDate("2008/10/08"), SMTP_HOST, SMTP_PORT, FROM, new FileEmployeesRepository("test/resources/employee_data.txt"));
+        service.sendGreetings(date("2008/10/08"), SMTP_HOST, SMTP_PORT, FROM, new FileEmployeesRepository("test/resources/employee_data.txt"));
 
         expect(messagesSent.length).toEqual(1);
         const message = messagesSent[0];
@@ -32,7 +33,7 @@ describe('Acceptance', () => {
     });
 
     it('will not send emails when nobodys birthday', () => {
-        service.sendGreetings(new OurDate("2008/01/01"), SMTP_HOST, SMTP_PORT, FROM, new FileEmployeesRepository("test/resources/employee_data.txt"));
+        service.sendGreetings(date("2008/01/01"), SMTP_HOST, SMTP_PORT, FROM, new FileEmployeesRepository("test/resources/employee_data.txt"));
 
         expect(messagesSent.length).toEqual(0);
     });

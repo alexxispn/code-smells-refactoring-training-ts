@@ -3,7 +3,7 @@ import {ourDateFromString} from "../helper/OurDateFactory";
 
 describe('OurDate', () => {
 
-    it('is same date', () => {
+    it('is same dateHelper', () => {
         const ourDate = ourDateFromString("1789/01/24");
         const sameDay = ourDateFromString("2001/01/24");
         const notSameDay = ourDateFromString("1789/01/25");

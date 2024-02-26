@@ -3,15 +3,12 @@ import {OurDate} from "./OurDate";
 export class Employee {
 
     private readonly birthDate: OurDate;
-    private readonly lastName: string;
     private readonly firstName: string;
     private readonly email: string;
 
-    constructor(firstName: string, lastName: string, birthDate: string,
-                email: string) {
+    constructor(firstName: string, email: string, birthDate: OurDate) {
         this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = new OurDate(birthDate);
+        this.birthDate = birthDate;
         this.email = email;
     }
 
@@ -25,11 +22,5 @@ export class Employee {
 
     public getFirstName(): string {
         return this.firstName;
-    }
-
-    static create(str: string) {
-        let employeeData = str.split(", ");
-        return new Employee(employeeData[1], employeeData[0],
-            employeeData[2], employeeData[3]);
     }
 }

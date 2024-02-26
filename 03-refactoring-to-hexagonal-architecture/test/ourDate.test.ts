@@ -1,12 +1,13 @@
 import {OurDate} from "../src/OurDate";
+import {date} from "./dateHelper";
 
 describe('OurDate', () => {
 
-  it('is same date', () => {
-    const ourDate = new OurDate("1789/01/24");
-    const sameDay = new OurDate("2001/01/24");
-    const notSameDay = new OurDate("1789/01/25");
-    const notSameMonth = new OurDate("1789/02/25");
+  it('is same dateHelper', () => {
+    const ourDate = date("1789/01/24");
+    const sameDay = date("2001/01/24");
+    const notSameDay = date("1789/01/25");
+    const notSameMonth = date("1789/02/25");
 
     expect(ourDate.isSameDay(sameDay)).toBeTruthy(); //"same"
     expect(ourDate.isSameDay(notSameDay)).toBeFalsy(); //"not same day"

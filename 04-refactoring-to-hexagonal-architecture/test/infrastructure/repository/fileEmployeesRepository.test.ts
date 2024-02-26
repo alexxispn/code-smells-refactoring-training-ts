@@ -20,12 +20,12 @@ describe('File Employee Repository', () => {
     });
 
     it('fails when the file does not have the necessary fields', () => {
-        const employeesRepository = new FileEmployeesRepository("test/resources/wrong_data__wrong-date-format.csv");
+        const employeesRepository = new FileEmployeesRepository("test/resources/wrong_data__wrong-dateHelper-format.csv");
 
         try {
             employeesRepository.whoseBirthdayIs(ANY_DATE);
         } catch (exception) {
-            expect(exception.message).toContain("Badly formatted employee birth date in");
+            expect(exception.message).toContain("Badly formatted employee birth dateHelper in");
         }
     });
 
