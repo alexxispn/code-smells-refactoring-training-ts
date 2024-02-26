@@ -27,4 +27,9 @@ export class Employee {
         return this.firstName;
     }
 
+    static create(str: string) {
+        let employeeData = str.split(", ");
+        return new Employee(employeeData[1], employeeData[0],
+            employeeData[2], employeeData[3]);
+    }
 }

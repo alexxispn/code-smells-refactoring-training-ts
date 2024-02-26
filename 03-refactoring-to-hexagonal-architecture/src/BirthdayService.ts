@@ -1,18 +1,19 @@
 import {OurDate} from "./OurDate";
 import {Employee} from "./Employee";
-import * as fs from "fs";
 import nodemailer, {Transporter} from "nodemailer";
 import {MailOptions} from "nodemailer/lib/smtp-transport";
 import {EmailNotSentError} from "./EmailNotSentError";
+import {EmployeesRepository} from "./EmployeesRepository";
 
 export class BirthdayService {
 
-    public sendGreetings(fileName: string, ourDate: OurDate, smtpHost: string, smtpPort: number, sender: string) {
-        const data = fs.readFileSync(fileName, {encoding: 'utf8'});
-        data.split(/\r?\n/).forEach((str: string) => {
-            let employeeData = str.split(", ");
-            const employee = new Employee(employeeData[1], employeeData[0],
-                employeeData[2], employeeData[3]);
+    sendGreetings(ourDate: OurDate,
+                         smtpHost: string,
+                         smtpPort: number,
+                         sender: string,
+                         employeesRepository: EmployeesRepository) {
+        const employees = employeesRepository.obtainEmployees();
+        employees.forEach((employee: Employee) => {
             if (employee.isBirthday(ourDate)) {
                 const recipient = employee.getEmail();
                 const body = "Happy Birthday, dear %NAME%!".replace("%NAME%",
@@ -51,3 +52,4 @@ export class BirthdayService {
         });
     }
 }
+
